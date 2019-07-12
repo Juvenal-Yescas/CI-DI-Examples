@@ -1,0 +1,15 @@
+kind: pipeline
+name: pytest
+
+branches:
+  include:
+    - droneIO
+
+steps:
+- name: test
+  image: python
+  commands:
+    - python3 -m venv venv
+    - . venv/bin/activate
+    - pip install -r requirements.txt
+    - pytest -v
