@@ -11,8 +11,9 @@ pool:
 
 steps:
 - script: |
-    python3 -m venv venv
-    . venv/bin/activate
+    apt-get install python3-venv
+    # python3 -m venv venv
+    # . venv/bin/activate
   displayName: 'Enable enviroment'
 
 - script: pip install -r requirements.txt
