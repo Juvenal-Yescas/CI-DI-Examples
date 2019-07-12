@@ -1,0 +1,35 @@
+language:
+  - python
+
+python:
+  - '3.6'
+
+git:
+  depth: 1
+  quiet: true
+
+branches:
+  only:
+  - travisCI
+
+before_install:
+  - python3 -m venv venv
+  - . venv/bin/activate
+
+install:
+  - pip install -r requirements.txt
+
+before_script:
+  - . venv/bin/activate
+script:
+  - pytest -v
+
+# notifications:
+#   # slack: owner:simple_key
+#   slack:
+#     secure: #[key_secure]
+#   on_success: change
+#   on_failure: always
+#   email:
+#     recipients:
+#     - take@mozej.com
