@@ -33,6 +33,6 @@ jobs:
 workflows:
   flow-pytest:
     jobs:
-      - testCode:
+      - test-code:
           pre-steps:
             - config-environment
