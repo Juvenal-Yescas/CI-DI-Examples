@@ -1,28 +1,41 @@
-# Python CircleCI 2.0 configuration file
-version: 2
-jobs:
-  build:
-    branches:
-      only:
-        - circleCI
-    docker:
-      - image: circleci/python:3.7
+version: 2.1 
 
-    working_directory: ~/repo
-
+commands:
+  config-environment:
     steps:
-      # Step 1: obtain repo from GitHub
-      - checkout
-      # Step 2: create virtual env and install dependencies
-      - run:
-          name: install dependencies
+      - run: 
+          name: Config environment..
           command: |
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-      # Step 3: run linter and tests
+
+  test-pytest:
+    steps:
       - run:
-          name: run tests
+          name: Run test pytest...
           command: |
             . venv/bin/activate
             pytest -v 
+
+executors:
+  python37:
+    docker:
+      - image: circleci/python:3.7
+
+jobs:
+  testCode:
+    branches:
+      only:
+        - circleCI
+    executor: python37
+    steps:
+      - checkout
+      - test-pytest
+
+workflows:
+  flow-pytest:
+    jobs:
+      - testCode:
+          pre-steps:
+            - config-environment
