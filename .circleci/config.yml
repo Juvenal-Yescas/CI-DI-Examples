@@ -25,6 +25,9 @@ executors:
 
 jobs:
   test-code:
+    branches:
+      only:
+        - circleCI
     executor: python37
     steps:
       - test-pytest
