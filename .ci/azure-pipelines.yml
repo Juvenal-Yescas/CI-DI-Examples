@@ -1,0 +1,27 @@
+trigger:
+- azure-Pipelines
+
+jobs:
+- job: 'Pytest'
+  pool:
+    vmImage: 'ubuntu-16.04'
+
+  steps:
+  - script: |
+      sudo apt-get install python3-venv
+      python3 -m venv venv
+      . venv/bin/activate
+    displayName: 'Enable enviroment'
+
+  - script: |
+      # pip install -r requirements.txt
+      python -m pip install --upgrade pip
+      pip install pytest pytest-azurepipelines
+      pip install -e
+    displayName: 'Install requirements'
+
+  - script: |
+      # pytest -v
+
+      python -m pytest
+    displayName: 'Run test'
