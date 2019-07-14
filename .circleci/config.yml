@@ -3,7 +3,6 @@ version: 2.1
 commands:
   config-environment:
     steps:
-      - checkout
       - run: 
           name: Config environment..
           command: |
@@ -28,7 +27,6 @@ jobs:
   test-code:
     executor: python37
     steps:
-      - checkout
       - test-pytest
 
 workflows:
@@ -36,4 +34,5 @@ workflows:
     jobs:
       - test-code:
           pre-steps:
+            - checkout
             - config-environment
