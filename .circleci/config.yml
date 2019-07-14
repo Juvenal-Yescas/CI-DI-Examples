@@ -24,10 +24,6 @@ executors:
       - image: circleci/python:3.7
 
 jobs:
-  testCode:
-    branches:
-      only:
-        - circleCI
     executor: python37
     steps:
       - checkout
