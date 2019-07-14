@@ -36,7 +36,7 @@ workflows:
           pre-steps:
             - checkout
             - config-environment
-        filters:
-          branches:
-            only:
-              - circleCI
+          filters:
+            branches:
+              only:
+                - circleCI
