@@ -13,10 +13,15 @@ jobs:
       . venv/bin/activate
     displayName: 'Enable enviroment'
 
-  - script: pip install -r requirements.txt
+  - script: |
+      # pip install -r requirements.txt
+      ython -m pip install --upgrade pip
+      pip install pytest pytest-azurepipelines
+      pip install -e
     displayName: 'Install requirements'
 
   - script: |
       # pytest -v
-      python3 calculator.py
+
+      python -m pytest
     displayName: 'Run test'
