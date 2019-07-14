@@ -33,10 +33,10 @@ workflows:
   flow-pytest:
     jobs:
       - test-code:
+          pre-steps:
+            - checkout
+            - config-environment
         filters:
           branches:
             only:
               - circleCI
-          pre-steps:
-            - checkout
-            - config-environment
